@@ -4,7 +4,7 @@ const path = require('path')
 const fs = require('fs')
 const jsonfile = require('jsonfile')
 const Promise = require('bluebird');
-const {token} = require('./credentials')
+const {token, username, password} = require('./credentials')
 
 apifyClient = new ApifyClient({
     token
@@ -32,9 +32,8 @@ Apify.main(async () => {
     
     // LOGIN
     await page.evaluate(async()=>{
-        document.getElementById('email').value = 'lukas@apify.com'
-        document.getElementById('pass').value = 'scraper1'
-        
+        document.getElementById('email').value = username
+        document.getElementById('pass').value = password    
     })
 
     await humanDelay(2000)
